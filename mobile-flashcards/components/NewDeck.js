@@ -10,7 +10,7 @@ class NewDeck extends React.Component {
   };
   render() {
     return (
-      <View style={styled.container}>
+      <KeyboardAvoidingView style={styled.container}>
         <Text>What is the title of your new deck?</Text>
         <TextInput
           style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
@@ -24,7 +24,7 @@ class NewDeck extends React.Component {
           title="SUBMIT"
           onPress={() => console.log(`${this.state.newDeckName}`)}
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
