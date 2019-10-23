@@ -24,6 +24,7 @@ class NewDeck extends React.Component {
           title="SUBMIT"
           onPress={() => console.log(`${this.state.newDeckName}`)}
         />
+        {/* Delete Deck Button */}
       </KeyboardAvoidingView>
     );
   }
