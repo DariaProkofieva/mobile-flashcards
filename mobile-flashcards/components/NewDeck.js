@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  KeyboardAvoidingView,
+  TextInput,
+  Button
+} from "react-native";
 
 class NewDeck extends React.Component {
   state = {

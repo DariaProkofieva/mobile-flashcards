@@ -1,14 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, TabNavigator } from "react-native";
+import { StyleSheet, StatusBar, ScrollView } from "react-native";
 
 import NewQuestion from "./components/NewQuestion";
-
+import NewDeck from "./components/NewDeck";
+import Tabs from "./components/Tabs";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <NewQuestion />
-    </View>
+    <ScrollView
+      contentContainerStyle={{ flex: 1, marginTop: StatusBar.currentHeight }}
+    >
+      <Tabs />
+    </ScrollView>
   );
 }
 
