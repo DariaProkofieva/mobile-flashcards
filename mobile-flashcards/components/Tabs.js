@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
-import Deck from "./Deck";
+import Decks from "./Decks";
 import NewDeck from "./NewDeck";
 
 const RootStack = createMaterialTopTabNavigator({
-  Deck: {
-    screen: Deck,
+  Decks: {
+    screen: Decks,
     navigationOptions: {
       title: "Decks",
       headerStyle: {
@@ -36,5 +36,4 @@ const RootStack = createMaterialTopTabNavigator({
 
 const Tabs = createAppContainer(RootStack);
 
-// Now AppContainer is the main component for React to render
 export default Tabs;
