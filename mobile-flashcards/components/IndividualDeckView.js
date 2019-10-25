@@ -1,16 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 
+import { withNavigation } from "react-navigation";
+
 class IndividualDeckView extends React.Component {
   state = {
     text: ""
   };
-  handleButtonAddCard = () => {
-    console.log("You pressed add card button");
-  };
-  handleButtonStartQuiz = () => {
-    console.log("You pressed Start Quiz button");
-  };
+  // handleButtonAddCard = () => {
+  //
+  // };
+  // handleButtonStartQuiz = () => {
+  //
+  // };
   render() {
     return (
       <View style={styled.container}>
@@ -19,12 +21,12 @@ class IndividualDeckView extends React.Component {
         <Button
           style={styled.btn}
           title="Add Card "
-          onPress={this.handleButtonAddCard}
+          onPress={() => this.props.navigation.push("AddQuestion")}
         />
         <Button
           style={styled.btn}
           title="Start Quiz"
-          onPress={this.handleButtonStartQuiz}
+          onPress={() => this.props.navigation.push("YourQuiz")}
         />
       </View>
     );
@@ -53,4 +55,4 @@ const styled = StyleSheet.create({
   }
 });
 
-export default IndividualDeckView;
+export default withNavigation(IndividualDeckView);

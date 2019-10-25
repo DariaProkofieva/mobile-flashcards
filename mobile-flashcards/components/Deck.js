@@ -9,14 +9,11 @@ import {
 import { withNavigation } from "react-navigation";
 
 class Deck extends React.Component {
-  // static navigationOptions = {
-  //   headerTitle: "First screen"
-  // };
   render() {
     return (
       <View style={styled.container}>
         <Button
-          title="Go to Details"
+          title="Deck 1"
           onPress={() => this.props.navigation.navigate("DeckView")}
         />
         <Text style={styled.btnText}>First deck</Text>

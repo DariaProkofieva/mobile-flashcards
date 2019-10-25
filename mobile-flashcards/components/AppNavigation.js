@@ -44,18 +44,19 @@ const TabsNav = createAppContainer(RootStack);
 
 const AppNavigator = createStackNavigator({
   Tab: {
-    screen: TabsNav
+    screen: TabsNav,
+    navigationOptions: { header: null }
   },
   DeckView: {
     screen: IndividualDeckView,
     navigationOptions: {
-      title: "IndividualDeckView"
+      title: "Deck 1"
     }
   },
   AddQuestion: {
     screen: NewQuestion,
     navigationOptions: {
-      title: "Add card"
+      title: "Add Card"
     }
   },
   YourQuiz: {

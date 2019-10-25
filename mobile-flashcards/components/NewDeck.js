@@ -7,6 +7,8 @@ import {
   Button
 } from "react-native";
 
+import { withNavigation } from "react-navigation";
+
 class NewDeck extends React.Component {
   state = {
     newDeckName: ""
@@ -28,7 +30,7 @@ class NewDeck extends React.Component {
         <Button
           style={styled.btn}
           title="SUBMIT"
-          onPress={() => console.log(`${this.state.newDeckName}`)}
+          // onPress={() => this.props.navigation.navigate ("NewQuestion")}
         />
         {/* Delete Deck Button */}
       </KeyboardAvoidingView>
@@ -58,4 +60,4 @@ const styled = StyleSheet.create({
   }
 });
 
-export default NewDeck;
+export default withNavigation(NewDeck);
