@@ -6,18 +6,22 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import AppNavigation from "./components/AppNavigation";
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <ScrollView
-        contentContainerStyle={{ flex: 1, marginTop: StatusBar.currentHeight }}
-      >
-        <AppNavigation />
-      </ScrollView>
-    </Provider>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={createStore(reducer)}>
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            marginTop: StatusBar.currentHeight
+          }}
+        >
+          <AppNavigation />
+        </ScrollView>
+      </Provider>
+    );
+  }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

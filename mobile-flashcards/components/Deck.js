@@ -10,13 +10,14 @@ import { withNavigation } from "react-navigation";
 
 class Deck extends React.Component {
   render() {
+    const { deck } = this.props;
+    console.log(deck);
     return (
       <View style={styled.container}>
         <Button
-          title="Deck 1"
+          title={deck.title}
           onPress={() => this.props.navigation.navigate("DeckView")}
         />
-        <Text style={styled.btnText}>First deck</Text>
       </View>
     );
   }

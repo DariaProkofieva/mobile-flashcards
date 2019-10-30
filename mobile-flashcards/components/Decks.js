@@ -1,14 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-
+import { StyleSheet, View, TouchableHighlight } from "react-native";
+import { connect } from "react-redux";
 import Deck from "./Deck";
+import { handleGetDecks } from "../actions/decks";
+import { getDecks } from "../utils/api";
 
-export default function Decks() {
-  return (
-    <View style={styled.container}>
-      <Deck />
-    </View>
-  );
+class Decks extends React.Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    getDecks().then(decks => dispatch(handleGetDecks(decks)));
+  }
+  render() {
+    const { decks } = this.props;
+    console.log(decks);
+    return (
+      <View style={styled.container}>
+        {Object.keys(decks).map(deck => (
+          <Deck key={deck} deck={decks[deck]} />
+        ))}
+      </View>
+    );
+  }
 }
 
 const styled = StyleSheet.create({
@@ -32,3 +45,10 @@ const styled = StyleSheet.create({
     color: "#fff"
   }
 });
+
+function mapStateToProps(decks) {
+  return {
+    decks
+  };
+}
+export default connect(mapStateToProps)(Decks);

@@ -8,20 +8,28 @@ import {
 } from "react-native";
 
 import { withNavigation } from "react-navigation";
+import { handleCreateDeck } from "../actions/decks";
 
 class NewDeck extends React.Component {
   state = {
     newDeckName: ""
   };
   handleButtonPress = () => {
-    alert("You tapped the button!And here is your text ");
+    this.props.dispatch(createDeck(newDeckName)),
+      this.setState({ newDeckName: "" }),
+      this.props.navigation.navigate("Decks");
   };
   render() {
     return (
       <KeyboardAvoidingView style={styled.container}>
         <Text>What is the title of your new deck?</Text>
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          style={{
+            height: 40,
+            width: 150,
+            borderColor: "gray",
+            borderWidth: 1
+          }}
           type="text"
           placeholder="Deck title"
           //   value={this.state.newDeckName}
@@ -32,7 +40,6 @@ class NewDeck extends React.Component {
           title="SUBMIT"
           // onPress={() => this.props.navigation.navigate ("NewQuestion")}
         />
-        {/* Delete Deck Button */}
       </KeyboardAvoidingView>
     );
   }
@@ -53,7 +60,8 @@ const styled = StyleSheet.create({
     paddingRight: 50,
     justifyContent: "center",
     alignContent: "center",
-    borderRadius: 5
+    borderRadius: 5,
+    width: 150
   },
   btnText: {
     color: "#fff"

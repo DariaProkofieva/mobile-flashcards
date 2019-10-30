@@ -2,13 +2,14 @@ export const GET_DECKS = "GET_DECKS";
 export const ADD_CARD_TO_DECK = "ADD_CARD_TO_DECK";
 export const CREATE_DECK = "CREATE_DECK";
 
-export function getDecks() {
+export function handleGetDecks(decks) {
   return {
-    type: GET_DECKS
+    type: GET_DECKS,
+    decks
   };
 }
 
-export function addCardToDeck(id, card) {
+export function handleAddCardToDeck(id, card) {
   return {
     type: ADD_CARD_TO_DECK,
     id,
@@ -16,7 +17,7 @@ export function addCardToDeck(id, card) {
   };
 }
 
-export function createDeck(title) {
+export function handleCreateDeck(title) {
   return {
     type: CREATE_DECK,
     title
