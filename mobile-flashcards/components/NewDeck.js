@@ -9,15 +9,24 @@ import {
 
 import { withNavigation } from "react-navigation";
 import { handleCreateDeck } from "../actions/decks";
+import { createDeck } from "../utils/api";
 
 class NewDeck extends React.Component {
   state = {
     newDeckName: ""
   };
-  handleButtonPress = () => {
-    this.props.dispatch(createDeck(newDeckName)),
-      this.setState({ newDeckName: "" }),
-      this.props.navigation.navigate("Decks");
+  // submitTitle = () => {
+  //   const newDeck = createDeck(this.state.newDeckName);
+  //   this.props.dispatch(handleCreateDeck(newDeck)),
+  //     this.setState({ newDeckName: "" }),
+  //     this.props.navigation.navigate("Decks");
+  // };
+  submitTitle = () => {
+    const { dispatch } = this.props;
+    createDeck(this.state.newDeckName).then(title =>
+      dispatch(handleCreateDeck(title))
+    );
+    this.setState({ newDeckName: "" }), this.props.navigation.navigate("Decks");
   };
   render() {
     return (
@@ -35,11 +44,7 @@ class NewDeck extends React.Component {
           //   value={this.state.newDeckName}
           onChangeText={newDeckName => this.setState({ newDeckName })}
         />
-        <Button
-          style={styled.btn}
-          title="SUBMIT"
-          // onPress={() => this.props.navigation.navigate ("NewQuestion")}
-        />
+        <Button style={styled.btn} title="SUBMIT" onPress={this.submitTitle} />
       </KeyboardAvoidingView>
     );
   }
