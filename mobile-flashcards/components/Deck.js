@@ -17,11 +17,14 @@ class Deck extends React.Component {
     return (
       <View style={styled.container}>
         <Button
-          title={deck.title}
+          // title={deck.title}
+          title="hello"
           onPress={() => this.props.navigation.navigate("DeckView", { deck })}
         >
-          {deck.title}
+          hello
+          {/* {deck.title} */}
         </Button>
+        {/* <Text>{deck.questions.length} Cards</Text> */}
       </View>
     );
   }

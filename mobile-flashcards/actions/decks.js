@@ -34,8 +34,9 @@ export function addDeckFunction(title) {
 }
 
 export function addCardFunction(id, card) {
-  return async dispatch => {
-    const id = await addCardToDeck(id, card);
-    dispatch(handleAddCardToDeck(id, card));
+  return dispatch => {
+    return addCardToDeck(id, card).then(() => {
+      dispatch(handleAddCardToDeck(id, card));
+    });
   };
 }

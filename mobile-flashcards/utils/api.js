@@ -73,18 +73,14 @@ export async function createDeck(title) {
 
 // addCardToDeck: take in two arguments, id and card, and will add the card to the list of questions for the deck with the associated id.
 export async function addCardToDeck(id, card) {
-  try {
-    const value = await AsyncStorage.getItem(MOBILE_FLASHCARDS_STORAGE_KEY);
-    if (value !== null) {
-      const data = JSON.parse(value);
-      const deck = data[id].questions.concat([card]);
-      await AsyncStorage.mergeItem(
-        MOBILE_FLASHCARDS_STORAGE_KEY,
-        JSON.stringify({ [id]: deck })
-      );
-      return card;
-    }
-  } catch (e) {
-    console.error("AsyncStorage#addCardToDeck error: " + error.message);
+  const value = await AsyncStorage.getItem(MOBILE_FLASHCARDS_STORAGE_KEY);
+  if (value !== null) {
+    const data = JSON.parse(value);
+    const deck = data[id].questions.concat([card]);
+    await AsyncStorage.mergeItem(
+      MOBILE_FLASHCARDS_STORAGE_KEY,
+      JSON.stringify({ deck })
+    );
+    return deck;
   }
 }

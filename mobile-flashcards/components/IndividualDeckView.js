@@ -21,7 +21,7 @@ class IndividualDeckView extends React.Component {
     return (
       <View style={styled.container}>
         <Text>{deck.title}</Text>
-        <Text>{deck.questions.length} Cards</Text>
+        {/* <Text>{deck.questions.length} Cards</Text> */}
         <Button
           style={styled.btn}
           title="Add Card "
@@ -30,7 +30,7 @@ class IndividualDeckView extends React.Component {
         <Button
           style={styled.btn}
           title="Start Quiz"
-          onPress={() => this.props.navigation.push("YourQuiz")}
+          onPress={() => this.props.navigation.push("YourQuiz", { deck })}
         />
       </View>
     );

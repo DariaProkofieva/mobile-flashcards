@@ -18,7 +18,7 @@ class NewDeck extends React.Component {
   submitTitle = () => {
     this.props.addDeck(this.state.newDeckName);
     this.setState({ newDeckName: "" });
-    this.props.navigation.navigate("Decks");
+    this.props.navigation.navigate("IndividualDeckView", { deck });
   };
   render() {
     return (

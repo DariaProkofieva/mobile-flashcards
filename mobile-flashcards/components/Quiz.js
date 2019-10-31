@@ -1,35 +1,48 @@
 import React from "react";
 import { StyleSheet, View, Button, Text } from "react-native";
+import { withNavigation } from "react-navigation";
+import Score from "./Score";
 
 class Quiz extends React.Component {
+  state = {
+    showAnswer: false,
+    correct: 0
+  };
   render() {
+    const { navigation } = this.props;
+    const { deck } = navigation.state.params;
+    onPressCorrect = () => {
+      this.setState({ showAnswer: true });
+    };
+    onPressShowAnswer = () => {
+      this.setState({ correct: correct + 1 });
+    };
     return (
+      // The view displays the number of questions remaining.
       <View behavior="padding" style={styled.container}>
         <Text> number of questions remaining</Text>
         <Text>{/* Will map Questions here */}</Text>
+        {showAnswer && (
+          <View>
+            {
+              //answer}
+            }
+          </View>
+        )}
         <Button
           style={styled.btn}
           title="Correct"
-          onPress={
-            () => console.log(`correct`)
-            // on press will show Answer
-          }
+          onPress={this.onPressCorrect}
         />
         <Button
           style={styled.btn}
           title="Incorrect"
-          onPress={
-            () => console.log(`incorrect`)
-            // on press will show Answer
-          }
+          onPress={this.onPressShowAnswer}
         />
         <Button
           style={styled.btn}
           title="Show Answer"
-          onPress={
-            () => console.log(`incorrect`)
-            // on press will show Answer
-          }
+          onPress={this.onPressShowAnswer}
         />
         {/* When the last question is answered, a score is displayed.
          This can be displayed as a percentage of correct answers 
@@ -65,4 +78,4 @@ const styled = StyleSheet.create({
   }
 });
 
-export default Quiz;
+export default withNavigation(Quiz);
