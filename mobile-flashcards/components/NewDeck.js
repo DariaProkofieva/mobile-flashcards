@@ -8,7 +8,8 @@ import {
 } from "react-native";
 
 import { withNavigation } from "react-navigation";
-import { handleCreateDeck } from "../actions/decks";
+import { connect } from "react-redux";
+import { handleCreateDeck, handleAddDeckShared } from "../actions/decks";
 import { createDeck } from "../utils/api";
 
 class NewDeck extends React.Component {
@@ -22,11 +23,15 @@ class NewDeck extends React.Component {
   //     this.props.navigation.navigate("Decks");
   // };
   submitTitle = () => {
-    const { dispatch } = this.props;
-    createDeck(this.state.newDeckName).then(title =>
-      dispatch(handleCreateDeck(title))
-    );
-    this.setState({ newDeckName: "" }), this.props.navigation.navigate("Decks");
+    // const { dispatch } = this.props;
+
+    // dispatch(handleCreateDeck(this.state.newDeckName));
+    // createDeck(this.state.newDeckName);
+    // this.setState({ newDeckName: "" });
+    // this.props.navigation.navigate("Decks");
+    this.props.addDeck(this.state.newDeckName);
+    this.setState({ newDeckName: "" });
+    this.props.navigation.navigate("Decks");
   };
   render() {
     return (
@@ -72,5 +77,18 @@ const styled = StyleSheet.create({
     color: "#fff"
   }
 });
+function mapDispatchToProps(dispatch) {
+  return {
+    addDeck: title => {
+      dispatch(handleAddDeckShared(title));
+    }
+  };
+}
 
-export default withNavigation(NewDeck);
+// export default withNavigation(NewDeck);
+export default withNavigation(
+  connect(
+    null,
+    mapDispatchToProps
+  )(NewDeck)
+);

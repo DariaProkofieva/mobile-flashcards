@@ -68,6 +68,7 @@ export async function createDeck(title) {
     MOBILE_FLASHCARDS_STORAGE_KEY,
     JSON.stringify(newDeck)
   );
+  return newDeck;
 }
 
 // addCardToDeck: take in two arguments, id and card, and will add the card to the list of questions for the deck with the associated id.

@@ -16,6 +16,8 @@ class IndividualDeckView extends React.Component {
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
+    console.log("ONE DECK FROM INDDECKVIEW");
+    console.log(deck);
     return (
       <View style={styled.container}>
         <Text>{deck.title}</Text>
@@ -23,7 +25,7 @@ class IndividualDeckView extends React.Component {
         <Button
           style={styled.btn}
           title="Add Card "
-          onPress={() => this.props.navigation.push("AddQuestion")}
+          onPress={() => this.props.navigation.push("AddQuestion", { deck })}
         />
         <Button
           style={styled.btn}

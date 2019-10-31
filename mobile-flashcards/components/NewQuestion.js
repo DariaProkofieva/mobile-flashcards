@@ -6,12 +6,28 @@ import {
   TextInput,
   KeyboardAvoidingView
 } from "react-native";
-
+import { handleAddCardToDeck } from "../actions/decks";
+import { addCardToDeck } from "../utils/api";
 class NewQuestion extends React.Component {
   state = {
     question: "",
     answer: ""
   };
+  submitCard = () => {
+    const { dispatch, navigation } = this.props;
+    const { deck } = navigation.state.params;
+    console.log("ONE DECK FROM ADD_QUESTION");
+    console.log(deck);
+    const id = deck.id;
+    const card = {
+      question: this.state.question,
+      answer: this.state.answer
+    };
+    dispatch(handleAddCardToDeck(id, card));
+    addCardToDeck(id, card);
+    this.props.navigation.goBack();
+  };
+
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styled.container}>
@@ -30,13 +46,7 @@ class NewQuestion extends React.Component {
           onChangeText={answer => this.setState({ answer })}
         />
 
-        <Button
-          style={styled.btn}
-          title="SUBMIT"
-          onPress={() =>
-            console.log(`${this.state.question} |||| ${this.state.answer} `)
-          }
-        />
+        <Button style={styled.btn} title="SUBMIT" onPress={this.submitCard} />
       </KeyboardAvoidingView>
     );
   }
