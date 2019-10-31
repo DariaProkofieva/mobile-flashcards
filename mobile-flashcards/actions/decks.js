@@ -1,4 +1,4 @@
-import { createDeck } from "../utils/api";
+import { createDeck, addCardToDeck } from "../utils/api";
 export const GET_DECKS = "GET_DECKS";
 export const ADD_CARD_TO_DECK = "ADD_CARD_TO_DECK";
 export const CREATE_DECK = "CREATE_DECK";
@@ -11,6 +11,7 @@ export function handleGetDecks(decks) {
 }
 
 export function handleAddCardToDeck(id, card) {
+  addCardToDeck(id, card);
   return {
     type: ADD_CARD_TO_DECK,
     id,
@@ -24,10 +25,17 @@ export function handleCreateDeck(newDeck) {
     newDeck
   };
 }
-export function handleAddDeckShared(title) {
+export function addDeckFunction(title) {
   return dispatch => {
     return createDeck(title).then(newDeck => {
       dispatch(handleCreateDeck(newDeck));
     });
+  };
+}
+
+export function addCardFunction(id, card) {
+  return async dispatch => {
+    const id = await addCardToDeck(id, card);
+    dispatch(handleAddCardToDeck(id, card));
   };
 }

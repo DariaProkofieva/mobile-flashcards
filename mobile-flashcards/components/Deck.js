@@ -18,7 +18,6 @@ class Deck extends React.Component {
       <View style={styled.container}>
         <Button
           title={deck.title}
-          // title="hello"
           onPress={() => this.props.navigation.navigate("DeckView", { deck })}
         >
           {deck.title}

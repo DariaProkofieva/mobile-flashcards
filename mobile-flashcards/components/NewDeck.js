@@ -9,26 +9,13 @@ import {
 
 import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
-import { handleCreateDeck, handleAddDeckShared } from "../actions/decks";
-import { createDeck } from "../utils/api";
+import { addDeckFunction } from "../actions/decks";
 
 class NewDeck extends React.Component {
   state = {
     newDeckName: ""
   };
-  // submitTitle = () => {
-  //   const newDeck = createDeck(this.state.newDeckName);
-  //   this.props.dispatch(handleCreateDeck(newDeck)),
-  //     this.setState({ newDeckName: "" }),
-  //     this.props.navigation.navigate("Decks");
-  // };
   submitTitle = () => {
-    // const { dispatch } = this.props;
-
-    // dispatch(handleCreateDeck(this.state.newDeckName));
-    // createDeck(this.state.newDeckName);
-    // this.setState({ newDeckName: "" });
-    // this.props.navigation.navigate("Decks");
     this.props.addDeck(this.state.newDeckName);
     this.setState({ newDeckName: "" });
     this.props.navigation.navigate("Decks");
@@ -46,7 +33,6 @@ class NewDeck extends React.Component {
           }}
           type="text"
           placeholder="Deck title"
-          //   value={this.state.newDeckName}
           onChangeText={newDeckName => this.setState({ newDeckName })}
         />
         <Button style={styled.btn} title="SUBMIT" onPress={this.submitTitle} />
@@ -80,12 +66,11 @@ const styled = StyleSheet.create({
 function mapDispatchToProps(dispatch) {
   return {
     addDeck: title => {
-      dispatch(handleAddDeckShared(title));
+      dispatch(addDeckFunction(title));
     }
   };
 }
 
-// export default withNavigation(NewDeck);
 export default withNavigation(
   connect(
     null,

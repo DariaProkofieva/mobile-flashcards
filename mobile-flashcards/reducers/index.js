@@ -18,7 +18,7 @@ export default function decks(state = {}, action) {
     case CREATE_DECK:
       return {
         ...state,
-        [action.id]: newDeck
+        ...action.newDeck
       };
     default:
       return state;

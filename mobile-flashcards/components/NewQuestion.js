@@ -6,7 +6,8 @@ import {
   TextInput,
   KeyboardAvoidingView
 } from "react-native";
-import { handleAddCardToDeck } from "../actions/decks";
+import { connect } from "react-redux";
+import { handleAddCardToDeck, addCardFunction } from "../actions/decks";
 import { addCardToDeck } from "../utils/api";
 class NewQuestion extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class NewQuestion extends React.Component {
     answer: ""
   };
   submitCard = () => {
-    const { dispatch, navigation } = this.props;
+    const { navigation } = this.props;
     const { deck } = navigation.state.params;
     console.log("ONE DECK FROM ADD_QUESTION");
     console.log(deck);
@@ -23,8 +24,10 @@ class NewQuestion extends React.Component {
       question: this.state.question,
       answer: this.state.answer
     };
-    dispatch(handleAddCardToDeck(id, card));
-    addCardToDeck(id, card);
+    console.log(id);
+    console.log(card);
+
+    this.props.addCard(id, card);
     this.props.navigation.goBack();
   };
 
@@ -73,5 +76,16 @@ const styled = StyleSheet.create({
     color: "#fff"
   }
 });
+function mapDispatchToProps(dispatch) {
+  return {
+    addCard: (id, card) => {
+      dispatch(addCardFunction(id, card));
+    }
+  };
+}
 
-export default NewQuestion;
+// export default NewQuestion;
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewQuestion);
