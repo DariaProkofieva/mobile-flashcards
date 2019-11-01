@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Button, Text } from "react-native";
 import { withNavigation } from "react-navigation";
-import Score from "./Score";
 
 class Quiz extends React.Component {
   state = {
@@ -10,31 +9,29 @@ class Quiz extends React.Component {
     index: 0
   };
 
-  onPressShowAnswer() {
-    console.log(this.state);
-    this.setState({ showAnswer: !showAnswer });
-  }
-  onPressCorrect() {
-    console.log(this.state);
-    this.setState({
-      correct: correct + 1,
-      index: index + 1,
-      showAnswer: true
-    });
-    console.log(this.state);
-    // nextQuestion();
-  }
-  onPressInCorrect() {
-    console.log(this.state);
-    console.log("was pressed");
-    this.setState({ index: index + 1, showAnswer: true });
-    console.log(this.state);
-    // nextQuestion();
-  }
-  // nextQuestion = () => {
-  //   this.setState({ showAnswer: false, index: index + 1 });
-  // };
+  onPressShowAnswer = () => {
+    this.setState(state => ({ showAnswer: !this.state.showAnswer }));
+  };
 
+  onPressCorrect = () => {
+    this.setState({
+      correct: this.state.correct + 1,
+      index: this.state.index + 1,
+      showAnswer: false
+    });
+  };
+  onPressInCorrect = () => {
+    this.setState({ index: this.state.index + 1, showAnswer: false });
+  };
+  reset = () => {
+    this.setState({
+      correct: 0,
+      index: 0,
+      showAnswer: false
+    });
+    const { deck } = this.props.navigation.state.params;
+    this.props.navigation.push("Quiz", { deck });
+  };
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
@@ -47,11 +44,7 @@ class Quiz extends React.Component {
         </View>
       );
     }
-
-    if (this.state.index === questions.length - 1) {
-      () => this.props.navigation.push("YourScore", { deck });
-    }
-    return (
+    return this.state.index !== questions.length ? (
       <View behavior="padding" style={styled.container}>
         <Text>
           {this.state.index + 1}/{questions.length}
@@ -65,19 +58,29 @@ class Quiz extends React.Component {
 
         <Button
           style={styled.btn}
-          onPress={() => this.onPressShowAnswer()}
+          onPress={this.onPressShowAnswer}
           title={this.state.showAnswer ? "Question" : "Answer"}
         />
 
         <Button
           style={styled.btn}
           title="Correct"
-          onPress={() => this.onPressCorrect()}
+          onPress={this.onPressCorrect}
         />
         <Button
           style={styled.btn}
           title="Incorrect"
-          onPress={() => this.onPressInCorrect()}
+          onPress={this.onPressInCorrect}
+        />
+      </View>
+    ) : (
+      <View>
+        <Text>You answered {this.state.correct} questions correctly</Text>
+        <Button style={styled.btn} title="Restart Quiz" onPress={this.reset} />
+        <Button
+          style={styled.btn}
+          title="Back to Deck"
+          onPress={() => navigation.goBack()}
         />
       </View>
     );
