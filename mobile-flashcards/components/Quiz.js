@@ -6,51 +6,79 @@ import Score from "./Score";
 class Quiz extends React.Component {
   state = {
     showAnswer: false,
-    correct: 0
+    correct: 0,
+    index: 0
   };
+
+  onPressShowAnswer() {
+    console.log(this.state);
+    this.setState({ showAnswer: !showAnswer });
+  }
+  onPressCorrect() {
+    console.log(this.state);
+    this.setState({
+      correct: correct + 1,
+      index: index + 1,
+      showAnswer: true
+    });
+    console.log(this.state);
+    // nextQuestion();
+  }
+  onPressInCorrect() {
+    console.log(this.state);
+    console.log("was pressed");
+    this.setState({ index: index + 1, showAnswer: true });
+    console.log(this.state);
+    // nextQuestion();
+  }
+  // nextQuestion = () => {
+  //   this.setState({ showAnswer: false, index: index + 1 });
+  // };
+
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
-    onPressCorrect = () => {
-      this.setState({ showAnswer: true });
-    };
-    onPressShowAnswer = () => {
-      this.setState({ correct: correct + 1 });
-    };
+    const questions = deck.questions;
+
+    if (questions.length === 0) {
+      return (
+        <View behavior="padding" style={styled.container}>
+          <Text>There are no cards in the deck!</Text>
+        </View>
+      );
+    }
+
+    if (this.state.index === questions.length - 1) {
+      () => this.props.navigation.push("YourScore", { deck });
+    }
     return (
-      // The view displays the number of questions remaining.
       <View behavior="padding" style={styled.container}>
-        <Text> number of questions remaining</Text>
-        <Text>{/* Will map Questions here */}</Text>
-        {showAnswer && (
-          <View>
-            {
-              //answer}
-            }
-          </View>
+        <Text>
+          {this.state.index + 1}/{questions.length}
+        </Text>
+
+        {this.state.showAnswer ? (
+          <Text>{questions[this.state.index].answer}</Text>
+        ) : (
+          <Text>{questions[this.state.index].question}</Text>
         )}
+
+        <Button
+          style={styled.btn}
+          onPress={() => this.onPressShowAnswer()}
+          title={this.state.showAnswer ? "Question" : "Answer"}
+        />
+
         <Button
           style={styled.btn}
           title="Correct"
-          onPress={this.onPressCorrect}
+          onPress={() => this.onPressCorrect()}
         />
         <Button
           style={styled.btn}
           title="Incorrect"
-          onPress={this.onPressShowAnswer}
+          onPress={() => this.onPressInCorrect()}
         />
-        <Button
-          style={styled.btn}
-          title="Show Answer"
-          onPress={this.onPressShowAnswer}
-        />
-        {/* When the last question is answered, a score is displayed.
-         This can be displayed as a percentage of correct answers 
-         or just the number of questions answered correctly. 
-
-         When the score is displayed, buttons are displayed 
-         to either start the quiz over or go back to the Individual Deck view.
-          'Restart Quiz' and 'Back to Deck' buttons */}
       </View>
     );
   }

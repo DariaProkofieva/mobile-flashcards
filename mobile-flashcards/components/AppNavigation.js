@@ -9,6 +9,7 @@ import NewQuestion from "./NewQuestion";
 import Quiz from "./Quiz";
 import Decks from "./Decks";
 import NewDeck from "./NewDeck";
+import Score from "./Score";
 
 const RootStack = createMaterialTopTabNavigator({
   Decks: {
@@ -63,6 +64,12 @@ const AppNavigator = createStackNavigator({
     screen: Quiz,
     navigationOptions: {
       title: "Quiz"
+    }
+  },
+  YourScore: {
+    screen: Score,
+    navigationOptions: {
+      title: "Score"
     }
   }
 });
