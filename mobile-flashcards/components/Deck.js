@@ -11,11 +11,8 @@ import { withNavigation } from "react-navigation";
 class Deck extends React.Component {
   render() {
     const { deck } = this.props;
-
-    console.log("ONE DECK");
-    console.log(deck);
     return (
-      <View style={styled.container}>
+      <View>
         <Button
           // title={deck.title}
           title="hello"
@@ -33,19 +30,18 @@ class Deck extends React.Component {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "stretch",
+    marginTop: 20
   },
   btn: {
     backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 10,
+    paddingRight: 10,
     justifyContent: "center",
     alignContent: "center",
-    borderRadius: 5
+    borderRadius: 5,
+    flex: 1
   },
   btnText: {
     color: "#fff"

@@ -16,21 +16,26 @@ class NewDeck extends React.Component {
     newDeckName: ""
   };
   submitTitle = () => {
-    this.props.addDeck(this.state.newDeckName);
-    this.setState({ newDeckName: "" });
-    this.props.navigation.navigate("IndividualDeckView", { deck });
+    const { dispatch } = this.props;
+
+    dispatch(addDeckFunction(this.state.newDeckName)).then(() => {
+      const decks = this.props.decks;
+      const newTitle = this.state.newDeckName;
+      const deckId = Object.keys(decks).filter(function(key) {
+        return decks[key].title === newTitle;
+      });
+      const deck = decks[deckId];
+      this.setState({ newDeckName: "" });
+      this.props.navigation.push("DeckView", { deck });
+    });
   };
+
   render() {
     return (
-      <KeyboardAvoidingView style={styled.container}>
-        <Text>What is the title of your new deck?</Text>
+      <KeyboardAvoidingView behavior="padding" style={styled.container}>
+        <Text style={styled.text}>What is the title of your new deck?</Text>
         <TextInput
-          style={{
-            height: 40,
-            width: 150,
-            borderColor: "gray",
-            borderWidth: 1
-          }}
+          style={styled.input}
           type="text"
           placeholder="Deck title"
           onChangeText={newDeckName => this.setState({ newDeckName })}
@@ -44,9 +49,8 @@ class NewDeck extends React.Component {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "center",
+    marginLeft: 40,
+    marginRight: 40,
     justifyContent: "center"
   },
   btn: {
@@ -59,21 +63,23 @@ const styled = StyleSheet.create({
     borderRadius: 5,
     width: 150
   },
-  btnText: {
-    color: "#fff"
+  input: {
+    borderRadius: 5,
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 10,
+    paddingLeft: 50,
+    paddingRight: 50
+  },
+  text: {
+    fontSize: 24
   }
 });
-function mapDispatchToProps(dispatch) {
+
+function mapStateToProps(decks) {
   return {
-    addDeck: title => {
-      dispatch(addDeckFunction(title));
-    }
+    decks
   };
 }
-
-export default withNavigation(
-  connect(
-    null,
-    mapDispatchToProps
-  )(NewDeck)
-);
+export default withNavigation(connect(mapStateToProps)(NewDeck));

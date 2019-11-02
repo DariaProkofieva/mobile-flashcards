@@ -26,14 +26,11 @@ class Decks extends React.Component {
   }
   render() {
     const { decks } = this.props;
-    console.log("ALL DECKS");
-    console.log(decks);
     return (
       <ScrollView contentContainerStyle={styled.container}>
         {Object.keys(decks).map(deck => (
           <Deck key={deck} deck={decks[deck]} />
         ))}
-
         <Button title="delete" onPress={this.clearAllData}>
           delete
         </Button>
@@ -45,22 +42,11 @@ class Decks extends React.Component {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: "center",
-    alignContent: "center",
-    borderRadius: 5
-  },
-  btnText: {
-    color: "#fff"
+    marginLeft: 40,
+    marginRight: 40,
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "stretch"
   }
 });
 
