@@ -33,10 +33,16 @@ export function addDeckFunction(title) {
   };
 }
 
+// export function addCardFunction(id, card) {
+//   return dispatch => {
+//     return addCardToDeck(id, card).then((id, card) => {
+//       dispatch(handleAddCardToDeck(id, card));
+//     });
+//   };
+// }
 export function addCardFunction(id, card) {
   return dispatch => {
-    return addCardToDeck(id, card).then(() => {
-      dispatch(handleAddCardToDeck(id, card));
-    });
+    dispatch(handleAddCardToDeck(id, card));
+    return addCardToDeck(id, card);
   };
 }
