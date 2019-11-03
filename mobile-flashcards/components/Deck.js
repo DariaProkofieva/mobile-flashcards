@@ -4,21 +4,36 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Button
+  Button,
+  Animated
 } from "react-native";
 import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 class Deck extends React.Component {
+  state = {
+    bounceValue: new Animated.Value(1)
+  };
+  pressButton = () => {
+    Animated.sequence([
+      Animated.timing(this.state.bounceValue, { duration: 200, toValue: 1.04 }),
+      Animated.spring(this.state.bounceValue, { toValue: 1, friction: 4 })
+    ]).start();
+    setTimeout(() => {
+      this.props.navigation.navigate("DeckView", { deck: this.props.deck });
+    }, 1000);
+  };
   render() {
     const { deck } = this.props;
     return (
-      <View style={styled.container}>
-        <Button
-          title={deck.title}
-          onPress={() => this.props.navigation.navigate("DeckView", { deck })}
-        ></Button>
+      <Animated.View
+        style={[
+          styled.container,
+          { transform: [{ scale: this.state.bounceValue }] }
+        ]}
+      >
+        <Button title={deck.title} onPress={this.pressButton} />
         <Text>{deck.questions.length} Cards</Text>
-      </View>
+      </Animated.View>
     );
   }
 }
@@ -29,18 +44,6 @@ const styled = StyleSheet.create({
     justifyContent: "center",
     alignItems: "stretch",
     marginTop: 20
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    paddingLeft: 10,
-    paddingRight: 10,
-    justifyContent: "center",
-    alignContent: "center",
-    borderRadius: 5,
-    flex: 1
-  },
-  btnText: {
-    color: "#fff"
   }
 });
 
