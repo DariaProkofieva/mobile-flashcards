@@ -14,8 +14,8 @@ class IndividualDeckView extends React.Component {
     console.log(deck);
     return (
       <View style={styled.container}>
-        <Text>{deck.title}</Text>
-        <Text>{deck.questions.length} Cards</Text>
+        <Text style={styled.text}>{deck.title}</Text>
+        <Text style={styled.text}>{deck.questions.length} Cards</Text>
         <Button
           style={styled.btn}
           title="Add Card "
@@ -33,23 +33,28 @@ class IndividualDeckView extends React.Component {
 
 const styled = StyleSheet.create({
   container: {
-    flex: 1
-    // marginLeft: 10,
-    // marginRight: 10,
-    // alignItems: "center",
-    // justifyContent: "center"
+    flex: 1,
+    marginLeft: 40,
+    marginRight: 40,
+    justifyContent: "center"
+    // textAlign: "center"
   },
   btn: {
-    backgroundColor: "#E53224"
-    // padding: 2,
-    // paddingLeft: 30,
-    // paddingRight: 30
-    // justifyContent: "center",
-    // alignContent: "center",
-    // borderRadius: 5
+    backgroundColor: "#E53224",
+    padding: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 5,
+    width: 150
   },
   btnText: {
     color: "#fff"
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 24
   }
 });
 

@@ -29,14 +29,14 @@ class NewQuestion extends React.Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styled.container}>
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          style={styled.input}
           type="text"
           placeholder="Your question"
           name="question"
           onChangeText={question => this.setState({ question })}
         />
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          style={styled.input}
           type="text"
           placeholder="Your answer"
           name="answer"
@@ -52,9 +52,8 @@ class NewQuestion extends React.Component {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "center",
+    marginLeft: 40,
+    marginRight: 40,
     justifyContent: "center"
   },
   btn: {
@@ -64,10 +63,20 @@ const styled = StyleSheet.create({
     paddingRight: 50,
     justifyContent: "center",
     alignContent: "center",
-    borderRadius: 5
+    borderRadius: 5,
+    width: 150
   },
-  btnText: {
-    color: "#fff"
+  input: {
+    borderRadius: 5,
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 10,
+    paddingLeft: 50,
+    paddingRight: 50
+  },
+  text: {
+    fontSize: 24
   }
 });
 function mapDispatchToProps(dispatch) {

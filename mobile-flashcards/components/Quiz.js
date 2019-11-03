@@ -46,14 +46,16 @@ class Quiz extends React.Component {
     }
     return this.state.index !== questions.length ? (
       <View behavior="padding" style={styled.container}>
-        <Text>
+        <Text style={styled.text}>
           {this.state.index + 1}/{questions.length}
         </Text>
 
         {this.state.showAnswer ? (
-          <Text>{questions[this.state.index].answer}</Text>
+          <Text style={styled.text}>{questions[this.state.index].answer}</Text>
         ) : (
-          <Text>{questions[this.state.index].question}</Text>
+          <Text style={styled.text}>
+            {questions[this.state.index].question}
+          </Text>
         )}
 
         <Button
@@ -74,8 +76,10 @@ class Quiz extends React.Component {
         />
       </View>
     ) : (
-      <View>
-        <Text>You answered {this.state.correct} questions correctly</Text>
+      <View style={styled.container}>
+        <Text style={styled.text}>
+          You answered {this.state.correct} questions correctly!
+        </Text>
         <Button style={styled.btn} title="Restart Quiz" onPress={this.reset} />
         <Button
           style={styled.btn}
@@ -90,9 +94,8 @@ class Quiz extends React.Component {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
-    alignItems: "center",
+    marginLeft: 40,
+    marginRight: 40,
     justifyContent: "center"
   },
   btn: {
@@ -102,10 +105,15 @@ const styled = StyleSheet.create({
     paddingRight: 50,
     justifyContent: "center",
     alignContent: "center",
-    borderRadius: 5
+    borderRadius: 5,
+    width: 150
   },
   btnText: {
     color: "#fff"
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 24
   }
 });
 

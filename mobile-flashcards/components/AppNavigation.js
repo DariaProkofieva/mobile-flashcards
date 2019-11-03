@@ -50,7 +50,7 @@ const AppNavigator = createStackNavigator({
   DeckView: {
     screen: IndividualDeckView,
     navigationOptions: {
-      title: "Deck 1"
+      title: "Deck"
     }
   },
   AddQuestion: {

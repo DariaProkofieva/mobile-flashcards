@@ -20,7 +20,7 @@ class Deck extends React.Component {
     ]).start();
     setTimeout(() => {
       this.props.navigation.navigate("DeckView", { deck: this.props.deck });
-    }, 1000);
+    }, 500);
   };
   render() {
     const { deck } = this.props;
@@ -32,7 +32,7 @@ class Deck extends React.Component {
         ]}
       >
         <Button title={deck.title} onPress={this.pressButton} />
-        <Text>{deck.questions.length} Cards</Text>
+        <Text style={styled.text}>{deck.questions.length} Cards</Text>
       </Animated.View>
     );
   }
@@ -44,6 +44,10 @@ const styled = StyleSheet.create({
     justifyContent: "center",
     alignItems: "stretch",
     marginTop: 20
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 18
   }
 });
 
