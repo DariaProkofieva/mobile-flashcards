@@ -6,8 +6,12 @@ import thunk from "redux-thunk";
 
 import reducer from "./reducers";
 import AppNavigation from "./components/AppNavigation";
+import { setLocalNotification } from "./utils/api";
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer, applyMiddleware(thunk))}>
