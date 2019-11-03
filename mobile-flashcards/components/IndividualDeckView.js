@@ -15,7 +15,7 @@ class IndividualDeckView extends React.Component {
     return (
       <View style={styled.container}>
         <Text>{deck.title}</Text>
-        {/* <Text>{deck.questions.length} Cards</Text> */}
+        <Text>{deck.questions.length} Cards</Text>
         <Button
           style={styled.btn}
           title="Add Card "

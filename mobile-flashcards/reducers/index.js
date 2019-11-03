@@ -12,7 +12,7 @@ export default function decks(state = {}, action) {
         ...state,
         [action.id]: {
           ...state[action.id],
-          questions: state[action.id].questions.concat([card])
+          questions: state[action.id].questions.concat([action.card])
         }
       };
     case CREATE_DECK:

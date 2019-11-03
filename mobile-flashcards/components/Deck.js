@@ -7,21 +7,17 @@ import {
   Button
 } from "react-native";
 import { withNavigation } from "react-navigation";
-
+import { connect } from "react-redux";
 class Deck extends React.Component {
   render() {
     const { deck } = this.props;
     return (
-      <View>
+      <View style={styled.container}>
         <Button
-          // title={deck.title}
-          title="hello"
+          title={deck.title}
           onPress={() => this.props.navigation.navigate("DeckView", { deck })}
-        >
-          hello
-          {/* {deck.title} */}
-        </Button>
-        {/* <Text>{deck.questions.length} Cards</Text> */}
+        ></Button>
+        <Text>{deck.questions.length} Cards</Text>
       </View>
     );
   }
@@ -48,4 +44,4 @@ const styled = StyleSheet.create({
   }
 });
 
-export default withNavigation(Deck);
+export default withNavigation(connect()(Deck));
