@@ -10,8 +10,6 @@ class IndividualDeckView extends React.Component {
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
-    console.log("ONE DECK FROM INDDECKVIEW");
-    console.log(deck);
     return (
       <View style={styled.container}>
         <Text style={styled.text}>{deck.title}</Text>
@@ -37,7 +35,6 @@ const styled = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     justifyContent: "center"
-    // textAlign: "center"
   },
   btn: {
     backgroundColor: "#E53224",

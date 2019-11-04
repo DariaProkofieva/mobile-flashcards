@@ -1,13 +1,6 @@
 import React from "react";
 import { AsyncStorage } from "react-native";
-import {
-  StyleSheet,
-  View,
-  TouchableHighlight,
-  Button,
-  Text,
-  ScrollView
-} from "react-native";
+import { StyleSheet, Button, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Deck from "./Deck";
 import { handleGetDecks } from "../actions/decks";
@@ -19,11 +12,12 @@ class Decks extends React.Component {
 
     getDecks().then(decks => dispatch(handleGetDecks(decks)));
   }
-  clearAllData() {
-    AsyncStorage.getAllKeys()
-      .then(keys => AsyncStorage.multiRemove(keys))
-      .then(() => alert("success"));
-  }
+  //to clear all data in local storage
+  // clearAllData() {
+  //   AsyncStorage.getAllKeys()
+  //     .then(keys => AsyncStorage.multiRemove(keys))
+  //     .then(() => alert("success"));
+  // }
   render() {
     const { decks } = this.props;
     return (
@@ -31,9 +25,10 @@ class Decks extends React.Component {
         {Object.keys(decks).map(deck => (
           <Deck key={deck} deck={decks[deck]} />
         ))}
-        <Button title="delete" onPress={this.clearAllData}>
+        {/* Button to clear all data in local storage */}
+        {/* <Button title="delete" onPress={this.clearAllData}>
           delete
-        </Button>
+        </Button> */}
       </ScrollView>
     );
   }

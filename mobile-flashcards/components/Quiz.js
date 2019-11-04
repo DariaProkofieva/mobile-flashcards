@@ -80,11 +80,6 @@ class Quiz extends React.Component {
           title="Incorrect"
           onPress={this.onPressInCorrect}
         />
-        <Button
-          style={styled.btn}
-          title="notification"
-          onPress={this.notification}
-        />
       </View>
     ) : (
       <View style={styled.container}>

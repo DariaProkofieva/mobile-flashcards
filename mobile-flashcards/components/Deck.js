@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Button,
-  Animated
-} from "react-native";
+import { StyleSheet, Text, View, Button, Animated } from "react-native";
 import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 class Deck extends React.Component {
