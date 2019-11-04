@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Button, Text } from "react-native";
 import { withNavigation } from "react-navigation";
-
+import { setLocalNotification, clearLocalNotification } from "../utils/api";
 class Quiz extends React.Component {
   state = {
     showAnswer: false,
@@ -32,6 +32,9 @@ class Quiz extends React.Component {
     const { deck } = this.props.navigation.state.params;
     this.props.navigation.push("Quiz", { deck });
   };
+  notification() {
+    clearLocalNotification().then(setLocalNotification);
+  }
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
@@ -43,6 +46,9 @@ class Quiz extends React.Component {
           <Text>There are no cards in the deck!</Text>
         </View>
       );
+    }
+    if (this.state.index === questions.length) {
+      notification();
     }
     return this.state.index !== questions.length ? (
       <View behavior="padding" style={styled.container}>
@@ -73,6 +79,11 @@ class Quiz extends React.Component {
           style={styled.btn}
           title="Incorrect"
           onPress={this.onPressInCorrect}
+        />
+        <Button
+          style={styled.btn}
+          title="notification"
+          onPress={this.notification}
         />
       </View>
     ) : (

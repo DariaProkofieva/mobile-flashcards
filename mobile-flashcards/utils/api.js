@@ -1,7 +1,8 @@
 import { AsyncStorage } from "react-native";
 
 import { generateID } from "./helpers";
-import { Notifications, Permissions } from "expo";
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
 
 const MOBILE_FLASHCARDS_STORAGE_KEY = "Flashacards:data";
 const NOTIFICATION_KEY = "Flashacards:notifications";
