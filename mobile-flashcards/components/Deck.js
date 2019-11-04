@@ -17,6 +17,7 @@ class Deck extends React.Component {
   };
   render() {
     const { deck } = this.props;
+    const cards = deck.questions.length > 1 ? " Cards" : " Card";
     return (
       <Animated.View
         style={[
@@ -25,7 +26,10 @@ class Deck extends React.Component {
         ]}
       >
         <Button title={deck.title} onPress={this.pressButton} />
-        <Text style={styled.text}>{deck.questions.length} Cards</Text>
+        <Text style={styled.text}>
+          {deck.questions.length}
+          {cards}
+        </Text>
       </Animated.View>
     );
   }

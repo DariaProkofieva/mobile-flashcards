@@ -10,10 +10,14 @@ class IndividualDeckView extends React.Component {
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
+    const cards = deck.questions.length > 1 ? " Cards" : " Card";
     return (
       <View style={styled.container}>
         <Text style={styled.text}>{deck.title}</Text>
-        <Text style={styled.text}>{deck.questions.length} Cards</Text>
+        <Text style={styled.text}>
+          {deck.questions.length}
+          {cards}
+        </Text>
         <Button
           style={styled.btn}
           title="Add Card "

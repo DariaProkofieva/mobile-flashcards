@@ -32,9 +32,9 @@ class Quiz extends React.Component {
     const { deck } = this.props.navigation.state.params;
     this.props.navigation.push("Quiz", { deck });
   };
-  notification() {
+  notification = () => {
     clearLocalNotification().then(setLocalNotification);
-  }
+  };
   render() {
     const { navigation } = this.props;
     const { deck } = navigation.state.params;
